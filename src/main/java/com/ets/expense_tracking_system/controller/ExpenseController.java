@@ -15,17 +15,17 @@ import com.ets.expense_tracking_system.service.ExpenseService;
 @RestController
 public class ExpenseController {
 	@Autowired
-	private ExpenseService expsenseService;
+	private ExpenseService expenseService;
 	@GetMapping("/expenses")
 	public List<Expense> getAllExpenses(){
-		return expsenseService.getAllExpenses();
+		return expenseService.getAllExpenses();
 	}
 	@GetMapping("/expenses/{id}")
-	public String getExpenseById(@PathVariable("id") Long id){
-		return "The expense ID is: "+id;
+	public Expense getExpenseById(@PathVariable("id") Long id){
+		return expenseService.getExpenseById(id);
 	}
 	@DeleteMapping("/expenses")
-	public String deleteExpenseById(@RequestParam("id") Long id){
-		return "The expense ID is: "+id;
+	public void deleteExpenseById(@RequestParam("id") Long id){
+		expenseService.deleteExpenseById(id);
 	}
 }
