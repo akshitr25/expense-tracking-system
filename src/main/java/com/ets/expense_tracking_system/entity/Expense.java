@@ -2,6 +2,10 @@ package com.ets.expense_tracking_system.entity;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,6 +30,12 @@ public class Expense {
 	private BigDecimal amount;
 	private String category;
 	private Date date;
+	@Column(name="created_at",nullable=false,updatable=false)
+	@CreationTimestamp
+	private Timestamp createdAt;
+	@Column(name="updatedAt")
+	@UpdateTimestamp
+	private Timestamp updatedAt;
 	public Long getId() {
 		return id;
 	}
@@ -62,10 +72,22 @@ public class Expense {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Timestamp getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Timestamp updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 	@Override
 	public String toString() {
 		return "Expense [id=" + id + ", name=" + name + ", description=" + description + ", amount=" + amount
-				+ ", category=" + category + ", date=" + date + "]";
+				+ ", category=" + category + ", date=" + date + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
+				+ "]";
 	}
-	
 }
