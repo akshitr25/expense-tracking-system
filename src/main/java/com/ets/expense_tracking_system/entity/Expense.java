@@ -62,5 +62,10 @@ public class Expense {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	@Override
+	public String toString() {
+		return "Expense [id=" + id + ", name=" + name + ", description=" + description + ", amount=" + amount
+				+ ", category=" + category + ", date=" + date + "]";
+	}
 	
 }

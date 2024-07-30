@@ -29,5 +29,9 @@ public class ExpenseServiceImpl implements ExpenseService{
 	public void deleteExpenseById(Long id) {
 		expenseRepo.deleteById(id);
 	}
+	@Override
+	public Expense saveExpenseDetails(Expense expense) {
+		return expenseRepo.save(expense);
+	}
 
 }
