@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,5 +37,10 @@ public class ExpenseController {
 		expenseService.saveExpenseDetails(expense);
 		System.out.println("***************Printing the expense details: "+expense+"***************");
 		return expense;
+	}
+	@PutMapping("/expenses/{id}")
+	public void updateExpenseDetails(@RequestBody Expense expense, @PathVariable Long id) {
+		expenseService.updateExpenseDetails(id, expense);
+		System.out.println("***************Printing the expense details: "+expense+"***************");
 	}
 }

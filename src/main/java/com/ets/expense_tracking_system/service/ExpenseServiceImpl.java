@@ -33,5 +33,15 @@ public class ExpenseServiceImpl implements ExpenseService{
 	public Expense saveExpenseDetails(Expense expense) {
 		return expenseRepo.save(expense);
 	}
+	@Override
+	public Expense updateExpenseDetails(Long id, Expense expense) {
+		Expense existingExpense=getExpenseById(id);
+		existingExpense.setName(expense.getName()!=null?expense.getName():existingExpense.getName());
+		existingExpense.setDescription(expense.getDescription()!=null?expense.getName():existingExpense.getDescription());
+		existingExpense.setCategory(expense.getCategory()!=null?expense.getName():existingExpense.getCategory());
+		existingExpense.setAmount(expense.getAmount()!=null?expense.getAmount():existingExpense.getAmount());
+		existingExpense.setDate(expense.getAmount()!=null?expense.getDate():existingExpense.getDate());
+		return expenseRepo.save(existingExpense);
+	}
 
 }
