@@ -15,3 +15,8 @@ values("Water bill", "water bill", 600.00, "Bills", "2024-07-30");
 
 insert into tbl_expenses(expense_name, description, expense_amount, category, date)
 values("Electricity bill", "electricity bill", 900.00, "Bills", "2024-07-15");
+
+insert into tbl_expenses(expense_name, description, expense_amount, category, date)
+values("Wifi bill", "wifi bill", 999.00, "Bills", "2024-07-20");
+
+commit
