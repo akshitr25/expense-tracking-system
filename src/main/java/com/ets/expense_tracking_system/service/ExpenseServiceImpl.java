@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ets.expense_tracking_system.entity.Expense;
+import com.ets.expense_tracking_system.exceptions.ExpenseNotFoundException;
 import com.ets.expense_tracking_system.repository.ExpenseRepository;
 
 @Service
@@ -24,7 +25,7 @@ public class ExpenseServiceImpl implements ExpenseService{
 		if(expense.isPresent())
 			return expense.get();
 		else
-			throw new RuntimeException("Exception is not found for the id: "+id);
+			throw new ExpenseNotFoundException("Expense is not found for the id: "+id);
 	}
 	@Override
 	public void deleteExpenseById(Long id) {
