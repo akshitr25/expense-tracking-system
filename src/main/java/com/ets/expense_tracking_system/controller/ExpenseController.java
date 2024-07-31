@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ets.expense_tracking_system.entity.Expense;
 import com.ets.expense_tracking_system.service.ExpenseService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class ExpenseController {
 	@Autowired
@@ -39,7 +41,7 @@ public class ExpenseController {
 	}
 	@ResponseStatus(value=HttpStatus.CREATED)
 	@PostMapping("/expenses")
-	public Expense saveExpenseDetails(@RequestBody Expense expense) {
+	public Expense saveExpenseDetails(@Valid @RequestBody Expense expense) {
 		expenseService.saveExpenseDetails(expense);
 		System.out.println("***************Printing the expense details: "+expense+"***************");
 		return expense;
