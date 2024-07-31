@@ -24,6 +24,8 @@ public class ExpenseController {
 	private ExpenseService expenseService;
 	@GetMapping("/expenses")
 	public List<Expense> getAllExpenses(Pageable page){
+		int n=1;
+		calcFactorial(n);
 		return expenseService.getAllExpenses(page).toList();
 	}
 	@GetMapping("/expenses/{id}")
@@ -46,5 +48,9 @@ public class ExpenseController {
 	public void updateExpenseDetails(@RequestBody Expense expense, @PathVariable Long id) {
 		expenseService.updateExpenseDetails(id, expense);
 		System.out.println("***************Printing the expense details: "+expense+"***************");
+	}
+	public int calcFactorial(int n)
+	{
+		return n*calcFactorial(n-1);
 	}
 }
