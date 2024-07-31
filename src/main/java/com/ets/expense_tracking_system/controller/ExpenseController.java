@@ -1,5 +1,6 @@
 package com.ets.expense_tracking_system.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,6 @@ public class ExpenseController {
 	private ExpenseService expenseService;
 	@GetMapping("/expenses")
 	public List<Expense> getAllExpenses(Pageable page){
-		int n=1;
-		calcFactorial(n);
 		return expenseService.getAllExpenses(page).toList();
 	}
 	@GetMapping("/expenses/{id}")
@@ -51,8 +50,18 @@ public class ExpenseController {
 		expenseService.updateExpenseDetails(id, expense);
 		System.out.println("***************Printing the expense details: "+expense+"***************");
 	}
-	public int calcFactorial(int n)
-	{
-		return n*calcFactorial(n-1);
+	@GetMapping("/expenses/category")
+	public List<Expense> getExpensesByCategory(@RequestParam String category,Pageable page){//{{url}}/expenses/category?category=Bills
+		return expenseService.readByCategory(category, page);
+	}
+	@GetMapping("/expenses/name")
+	public List<Expense> getExpensesByName(@RequestParam String keyword, Pageable page){//{{url}}/expenses/name?keyword=Petrol
+		return expenseService.readByName(keyword, page);
+	}
+	@GetMapping("/expenses/date")
+	public List<Expense> getExpensesByDates(@RequestParam(required=false) Date startDate,
+			@RequestParam(required=false) Date endDate,
+			Pageable page){//{{url}}/expenses/date?startDate=2024-07-10&endDate=2024-07-20
+		return expenseService.readByDate(startDate,endDate,page);
 	}
 }
